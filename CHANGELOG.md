@@ -1,5 +1,6 @@
 # Changelog
 
-## v1.0.0 (in progress)
+## v1.0.0 (August 01, 2024)
 
-* Initial release of `itential.core` collection
+* initial commit of itential.core collection
+
