@@ -4,6 +4,7 @@
 # Exclude these files from the linter
 exclude_paths:
   - .git*
+  - plugins/
 
 # Rules that we feel should not be errors but warnings
 warn_list:
