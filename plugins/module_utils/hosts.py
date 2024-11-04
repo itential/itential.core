@@ -28,6 +28,13 @@ def new(spec, hostvars) -> typing.Any:
     Returns:
         An immutable instance that represents the host
     """
+    display.trace("hosts.new")
+
+    verbosity = hostvars.get("itential_verbosity")
+    if verbosity is not None:
+        if hostvars.get("ansible_verbosity") < verbosity:
+            display.set_verbosity(verbosity)
+
     options = spec.get("options")
 
     values = dict()

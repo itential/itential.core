@@ -3,10 +3,27 @@
 # GNU General Public License v3.0+ (see LICENSES/GPL-3.0-or-later.txt or https://www.gnu.org/licenses/gpl-3.0.txt)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import os
+
 from ansible.utils.display import Display
 
 
 display = Display()
+
+
+def set_verbosity(lvl) -> None:
+    """Overrides the verbosity level
+
+    Args:
+        lvl (int): The verbosity level to set.  Value values are in the
+            range of 1 to 5
+
+    Returns:
+        None
+    """
+    if lvl is not None:
+        if 0 <= lvl <= 6:
+            display.verbosity = lvl
 
 
 def tostring(msg) -> None:
