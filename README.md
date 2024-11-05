@@ -79,7 +79,6 @@ The release notes provide a quick glance with regards to new and/or changed
 features and bug fixes available in each release.  The release notes are
 updated for each release and can be found [here](CHANGELOG.md)
 
-
 ## More Information
 
 Additional information about Itential Automation Gateway can be found at
