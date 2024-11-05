@@ -46,7 +46,7 @@ tags:
 
 # Collections that this collection requires to be installed for it to be usable. The key of the dict is the
 # collection label 'namespace.name'. The value is a version range
-# L(specifiers,https://python-semanticversion.readthedocs.io/en/latest/#requirement-specification). Multiple version
+# (specifiers,https://python-semanticversion.readthedocs.io/en/latest/#requirement-specification). Multiple version
 # range specifiers can be set and are separated by ','
 dependencies: {}
 
@@ -57,7 +57,7 @@ repository: https://github.com/itential/itential.core
 documentation: https://github.com/itential/itential.core
 
 # The URL to the homepage of the collection/project
-homepage: https://www.itential.com
+homepage: https://github.com/itential/itential.core
 
 # The URL to the collection issue tracker
 issues: https://github.com/itential/itential.core/issues
@@ -66,7 +66,18 @@ issues: https://github.com/itential/itential.core/issues
 # artifact. A pattern is matched from the relative path of the file or directory of the collection directory. This
 # uses 'fnmatch' to match the files or directories. Some directories and files like 'galaxy.yml', '*.pyc', '*.retry',
 # and '.git' are always filtered. Mutually exclusive with 'manifest'
-build_ignore: []
+build_ignore:
+  - .gitignore
+  - .gitlab-ci.yml
+  - ansible.cfg
+  - '*.log'
+  - '*.bin'
+  - '*.whl'
+  - '*.tgz'
+  - '*.gz'
+  - '*.pem'
+  - '*.cert'
+  - scripts
 
 # A dict controlling use of manifest directives used in building the collection artifact. The key 'directives' is a
 # list of MANIFEST.in style

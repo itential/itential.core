@@ -67,7 +67,6 @@ encounter any problems using this collection, please open an issue
 For additional details please consult the Itential Community Guide found
 [here](CONTRIBUTING.md)
 
-
 ## Code of Conduct
 
 This project is managed by the Itential community and sponsered by Itential and
