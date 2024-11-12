@@ -60,7 +60,6 @@ def send_request(method, url, headers=None, data=None, params=None, auth=None, t
         "method": method,
         "url": url,
         "headers": headers,
-        "data": data,
         "params": params,
         "verify": verify,
     }
@@ -74,7 +73,7 @@ def send_request(method, url, headers=None, data=None, params=None, auth=None, t
     if certificate_file is not None and private_key_file is not None:
         kwargs["cert"] = (certificate_file, private_key_file)
 
-    if isinstance(kwargs.get("data"), (dict, list)):
+    if isinstance(kwargs.get("data"), (dict, list)) and kwargs.get("data"):
         kwargs["data"] = json.dumps(data)
 
     display.vvvvv(f"Request object: {kwargs}")
