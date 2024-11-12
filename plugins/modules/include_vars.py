@@ -36,8 +36,8 @@ options:
 
 
 EXAMPLES = """
-  - name: Include all files from config
-    itential.core.include_vars:
-      name: config
-      path: path/to/files
+- name: Include all files from config
+  itential.core.include_vars:
+    name: config
+    path: path/to/files
 """
