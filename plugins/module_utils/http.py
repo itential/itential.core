@@ -51,6 +51,8 @@ def send_request(method, url, headers=None, data=None, params=None, auth=None, t
     Returns
         A `Response` object that contains the response from the API call
     """
+    display.trace("http.send_request")
+
     if disable_warnings is True:
         urllib3.disable_warnings()
 
@@ -58,7 +60,6 @@ def send_request(method, url, headers=None, data=None, params=None, auth=None, t
         "method": method,
         "url": url,
         "headers": headers,
-        "data": data,
         "params": params,
         "verify": verify,
     }
@@ -72,16 +73,20 @@ def send_request(method, url, headers=None, data=None, params=None, auth=None, t
     if certificate_file is not None and private_key_file is not None:
         kwargs["cert"] = (certificate_file, private_key_file)
 
-    if isinstance(kwargs.get("data"), (dict, list)):
+    if isinstance(kwargs.get("data"), (dict, list)) and kwargs.get("data"):
         kwargs["data"] = json.dumps(data)
 
-    display.vvvvv(f"Request: {kwargs}")
+    display.vvvvv(f"Request object: {kwargs}")
 
     try:
         if session is not None:
             resp = session.request(**kwargs)
         else:
             resp = requests.request(**kwargs)
+
+        display.vvv(f"HTTP response is {resp.status_code} {resp.reason}")
+        display.vvvvv(f"Start of response body\n{resp.text}\nEnd of response body")
+        display.vvvvv(f"Call completed in {resp.elapsed}")
 
     except requests.exceptions.ConnectionError as exc:
         display.vvvvv(traceback.format_exc())
@@ -116,7 +121,7 @@ def make_url(host, path, port=0, use_tls=True) -> str:
     Returns:
         A string that represents the full URL
     """
-    display.trace("http.make_url()", host=host)
+    display.trace("http.make_url")
 
     if port == 0:
         port = 443 if use_tls is True else 80
@@ -146,6 +151,7 @@ def basic_auth(username, password) -> HTTPBasicAuth:
     Returns:
         A `requests.HTTPBasicAuth` object
     """
+    display.trace("http.basic_auth")
     return HTTPBasicAuth(username, password)
 
 
@@ -231,6 +237,7 @@ class Session(object):
         session (requests.Session): The requests library session.
     """
     def __init__(self, name):
+        display.trace("http.Session.init")
         self.name = name
         self.session = requests.Session()
 
@@ -244,7 +251,7 @@ class Session(object):
         Returns:
             A `Response` object
         """
-        display.trace("Session.send()", host=self.name)
+        display.trace("http.Session.send")
 
         url = make_url(
             request.host,
@@ -252,8 +259,6 @@ class Session(object):
             request.port,
             request.use_tls,
         )
-
-        display.vvv(f"{request.method} {url}", host=self.name)
 
         resp = send_request(
             method=request.method,
@@ -264,9 +269,6 @@ class Session(object):
             disable_warnings=request.disable_warnings,
             session=self.session
         )
-
-        display.vvv(f"RESPONSE status_code={resp.status_code}", host=self.name)
-        display.vvv(f"Elapsed time {resp.elapsed}", host=self.name)
 
         return Response(
             status_code=resp.status_code,
