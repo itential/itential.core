@@ -73,8 +73,9 @@ def send_request(method, url, headers=None, data=None, params=None, auth=None, t
     if certificate_file is not None and private_key_file is not None:
         kwargs["cert"] = (certificate_file, private_key_file)
 
-    if isinstance(kwargs.get("data"), (dict, list)) and kwargs.get("data"):
-        kwargs["data"] = json.dumps(data)
+    # Data passed as string, compare if present and not empty to set it to kwargs
+    if data and data != "{}":                                               
+        kwargs["data"] = data  
 
     display.vvvvv(f"Request object: {kwargs}")
 
