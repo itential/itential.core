@@ -1,8 +1,9 @@
 # Changelog
 
-## v1.0.2 (November 05, 2024)
+## v1.0.2 (November 06, 2024)
 
 * Galaxy prep  https://github.com/itential/itential.core/pull/4
+* Update galaxy version and changelog for release 1.0.2 [skip ci]
 
 Full Changelog: https://github.com/itential/itential.core/compare/v1.0.1...v1.0.2 
 
