@@ -73,8 +73,10 @@ def send_request(method, url, headers=None, data=None, params=None, auth=None, t
     if certificate_file is not None and private_key_file is not None:
         kwargs["cert"] = (certificate_file, private_key_file)
 
-    if isinstance(kwargs.get("data"), (dict, list)) and kwargs.get("data"):
-        kwargs["data"] = json.dumps(data)
+    if data is not None:
+        if not isinstance(data, bytes):
+            raise AnsibleError(f"invalid type for data, expected bytes, got {type(data)}")
+        kwargs["data"] = data
 
     display.vvvvv(f"Request object: {kwargs}")
 
