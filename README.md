@@ -14,6 +14,13 @@ To get started using this collection, it first needs to be installed in either
 your local development environment or installed on a running instance of an
 Itential Automation Gateway server.
 
+## Building the collection
+
+To build the collection from the source code, use the following command
+```bash
+ansible-galaxy collection build <path to collection source code> --output-path <path to tarball>
+```
+
 ## Installing the collection
 
 The collection can be installed using either the Itential Automation Gateway UI
