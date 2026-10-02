@@ -1,18 +1,18 @@
 # Ansible Collection - itential.core
 
 The `itential.core` collection provides a common set of libraries used by
-collections running on Itential Automation Gateway  This collection does not
+collections running on Itential Gateway  This collection does not
 direclty provide any plugins and should only be installed as a dependency for
 other `itential.*` collections.
 
 This colleciton is designed to work with Itential Automation Gatewway and
 should be installed on a running instance of the server.  It can also be used
-outside of Itential Automation Gateway in development environments for
+outside of Itential Gateway in development environments for
 developing Ansible playbooks.
 
 To get started using this collection, it first needs to be installed in either
 your local development environment or installed on a running instance of an
-Itential Automation Gateway server.
+Itential Gateway server.
 
 ## Building the collection
 
@@ -23,19 +23,19 @@ ansible-galaxy collection build <path to collection source code> --output-path <
 
 ## Installing the collection
 
-The collection can be installed using either the Itential Automation Gateway UI
+The collection can be installed using either the Itential Gateway UI
 or the Ansible Galaxy CLI directly or defined as part of a `requirements.yaml`
 file.
 
-To install the collection on an server running Itential Automation Gateway,
+To install the collection on an server running Itential Gateway,
 simply click the "Install a collection" from the main page toolbar.
 
 See the [Itential documentation](https//docs.itential.com) for more details about installing a collection
-on an Itential Automation Gateway server.
+on an Itential Gateway server.
 
 Alternatively, the Ansible Galaxy CLI can be used to install the collection.
 To use the Galaxy CLI, run the following command in your development
-environment or on the Itential Automation Gateway server.
+environment or on the Itential Gateway server.
 
 ```bash
 ansible-galaxy collection install itential.core
@@ -90,7 +90,7 @@ updated for each release and can be found [here](CHANGELOG.md)
 
 ## More Information
 
-Additional information about Itential Automation Gateway can be found at
+Additional information about Itential Gateway can be found at
 http://itential.com.
 
 
